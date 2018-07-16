@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>图书列表</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>
+                    LOGIN
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="<%=appPath%>/book/list">首页</a></li>
+                <%--<li><a href="<%=appPath%>/book/detail/1000">图书具体信息</a></li>--%>
+                <%--<li><a href="<%=appPath%>/book/add">添加图书信息</a></li>--%>
+                <li class="disabled"><a href="#">信息</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="page-header">
+                <h1>列表 <small>显示列表</small></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table data-toggle="bs_t" data-url="bs_t_data">
+                <thead>
+                <tr>
+                    <th data-field="id">编号</th>
+                    <th data-field="name">名称</th>
+                    <th data-field="number">数量</th>
+                    <th data-field="detail">详情</th>
+                </tr>
+                </thead>
+            </table>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>图书编号</th>
+                    <th>图书名字</th>
+                    <th>图书数量</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="book" items="${requestScope.get('list')}" varStatus="status">
+                    <tr>
+                        <td>${book.id}</td>
+                        <td>${book.name}</td>
+                        <td>${book.number}</td>
+                        <td>
+                            <a href="<%=appPath%>/book/detail/${book.id}">详情</a> |
+                            <a href="<%=appPath%>/book/padd">增加</a> |
+                            <a href="<%=appPath%>/book/del/${book.id}">删除</a>
+                        </td>
+
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../js/commonJsAndCss.js"></script>
+</body>
+</html>

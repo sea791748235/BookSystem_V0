@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hisen.dao.BookDao">
+  <!-- 目的：为dao接口方法提供sql语句配置 -->
+  <select id="queryById" resultType="Book" parameterType="long">
+    <!-- 具体的sql -->
+    SELECT
+    id,
+    name,
+    number,
+    detail
+    FROM
+    t_book
+    WHERE
+    id = #{id}
+  </select>
+
+  <select id="queryAll" resultType="Book">
+    SELECT
+    id,
+    name,
+    number,
+    detail
+    FROM
+    t_book
+    ORDER BY
+    id
+    LIMIT #{offset}, #{limit}
+  </select>
+
+  <update id="updateBook" parameterType="Book">
+    UPDATE t_book
+    SET NAME = #{name},
+    NUMBER = #{number},
+    detail = #{detail}
+    WHERE
+    id = #{id}
+    AND number > 0
+  </update>
+
+  <insert id="addBook">
+    INSERT INTO t_book(`id`, `name`, `number`,`detail`)
+    VALUES(#{id}, #{name}, #{number}, #{detail})
+  </insert>
+
+  <delete id="deleteBookById">
+    DELETE FROM t_book WHERE id = #{id}
+  </delete>
+</mapper>
